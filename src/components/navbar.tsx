@@ -1,16 +1,16 @@
-import { Outlet } from "react-router";
+import { Link, Outlet } from "react-router";
 import "./styles.css";
 
 const Navbar = () => {
   return (
     <>
       <nav>
-        <a href="##" className="logo-nav">
+        <Link to={'/'} className="logo-nav">
           Git Explorer
-        </a>
+        </Link>
         <div className="link-cont">
-          <a href="##">Repos</a>
-          <a href="##">Users</a>
+          <Link to={'/'}>Repos</Link>
+          <Link to={'/users'}>Users</Link>
         </div>
       </nav>
       <Outlet/>
