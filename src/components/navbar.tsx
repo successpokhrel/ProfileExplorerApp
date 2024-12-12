@@ -1,7 +1,11 @@
 import { Link, Outlet } from "react-router";
 import "./styles.css";
 
-const Navbar = () => {
+interface NavbarProps {
+  isLogged: boolean
+}
+
+const Navbar = ({isLogged}: NavbarProps) => {
   return (
     <>
       <nav>
@@ -11,6 +15,9 @@ const Navbar = () => {
         <div className="link-cont">
           <Link to={'/'}>Repos</Link>
           <Link to={'/users'}>Users</Link>
+          <Link to={'/search'}>Search Profile</Link>
+          <Link to={'/authProfile'}>Profile</Link>
+          {!isLogged && <Link to={'/login'}>Login</Link>}
         </div>
       </nav>
       <Outlet/>
