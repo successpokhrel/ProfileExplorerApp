@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { GitHubUser } from "../../types";
+import { Link } from "react-router";
 
 const Users = () => {
   const [gitUsers, setGitUsers] = useState<GitHubUser[]>([]);
@@ -27,7 +28,7 @@ const Users = () => {
               className="user-avatar"
             />
             <span className="username">{user.login}</span>
-            <button className="view-btn">View User</button>
+            <Link to={`/users/user/${user.login}`} className="view-btn">View User</Link>
           </div>
         ))}
       </div>

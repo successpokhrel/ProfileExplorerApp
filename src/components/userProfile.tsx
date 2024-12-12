@@ -2,15 +2,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { GitHubUser } from "../../types"; // Import the type from your types.ts
 import "./styles.css";
+import { useParams } from "react-router";
 
 const UserProfile = () => {
-  // Define the state with the GitHubUser type
-  const [gitUserData, setGitUserData] = useState<GitHubUser | null>(null);
 
+  const [gitUserData, setGitUserData] = useState<GitHubUser | null>(null);
+  const {username}= useParams();
+  
   useEffect(() => {
     const getGitUser = async () => {
       try {
-        const response = await axios.get<GitHubUser>(`https://api.github.com/users/Kolosafo`);
+        const response = await axios.get<GitHubUser>(`https://api.github.com/users/${username}`);
         console.log("USER IS HERE", response.data);
         setGitUserData(response.data);
       } catch (e) {
