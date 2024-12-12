@@ -1,3 +1,4 @@
+import { Outlet } from "react-router";
 import "./styles.css";
 
 const Navbar = () => {
@@ -12,6 +13,7 @@ const Navbar = () => {
           <a href="##">Users</a>
         </div>
       </nav>
+      <Outlet/>
     </>
   );
 };
