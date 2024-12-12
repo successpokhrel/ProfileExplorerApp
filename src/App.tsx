@@ -1,5 +1,7 @@
 import "./App.css";
-import { Route, Routes } from "react-router";
+import {  Route, Routes, Navigate } from "react-router";
+// import { Navigate } from "react-router";
+
 import Home from "./components/home";
 import AboutUs from "./components/about";
 import Users from "./components/users";
@@ -14,6 +16,7 @@ import AuthProfile from "./components/authProfile";
 function App() {
   const [username, setUsername] = useState<string>("");
   const [isLogged, setIsLogged] = useState<boolean>(false);
+
   return (
     <div className="App">
       <Routes>
@@ -28,7 +31,13 @@ function App() {
             path="/login"
           />
           <Route 
-            element={<AuthProfile username={username}/>}
+            element={
+              isLogged? (
+                <AuthProfile username={username}/>
+              ):(
+                <Navigate replace to={'/login'}/>
+              )
+            }
             path="/authProfile"
           />
         </Route>
