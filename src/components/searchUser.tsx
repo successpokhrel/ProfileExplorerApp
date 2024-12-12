@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./styles.css";
+import { useNavigate } from "react-router";
 
 const SearchUser = () => {
   const [username, setUsername] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [loading, setLoading] = useState<string>("Submit");
   const [attempts, setAttempts] = useState<number>(3);
+  const navigate = useNavigate();
 
   const handleGetUser = async (): Promise<any> => {
     if (username) {
@@ -16,6 +18,7 @@ const SearchUser = () => {
         );
         if (response.status === 200) {
           console.log(response.data);
+          navigate(`/users/user/${username}`);
         }
         return response;
       } catch (error) {
@@ -41,8 +44,11 @@ const SearchUser = () => {
   useEffect(() => {
     if (attempts <= 0) {
       setErrorMsg("Too many attempts, REDIRECTING...");
+      setTimeout(() => {
+        navigate(`/`);
+      }, 3000);
     }
-  }, [attempts]);
+  }, [attempts, navigate]);
 
   return (
     <>
